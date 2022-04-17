@@ -1,12 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Content, Footer, Title, IconContainer, HeaderText } from '../styledComponents'
-import ContactUs from './ContactUs'
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-import CommonAccordion from './common-components/Accordion';
-import { COURSE_DETAILS } from '../shared/Constant';
+import { COURSE_DETAILS, MOBILE_NUMBER, EMAIL_ID } from '../shared/Constant';
+import AllCourseDetails from './AllCourseDetails';
+import { Routes, Route, useNavigate} from "react-router-dom";
+import CourseDetails from './CourseDetails';
+
 
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const [selectedCourse, setSelectedCourse] = useState({});
+
+  const showCourseDetails = (name) => {
+    setSelectedCourse(COURSE_DETAILS.find(ele => ele.courseName === name));
+    navigate('/course-details');
+  };
+
   return (
     <>
     <Title> 
@@ -14,34 +24,14 @@ const Dashboard = () => {
       <HeaderText>Business Intelligence Training Courses</HeaderText>
     </Title>
     <Content>
-      {
-        COURSE_DETAILS.map(courseDetails => {
-          const {courseName} = courseDetails;
-          return (
-            <React.Fragment key={courseName}>
-              <CommonAccordion {...courseDetails}/>
-            </React.Fragment>
-          )
-        })
-      }
-      
-      <div className='course-details'>
-      <div>Courses Available</div>
-        <div className='course-list'>
-            <ol>
-                <li>JAVA</li>
-                <li>JS</li>
-                <li>PYTHON</li>
-                <li>KOTLIN</li>
-            </ol>
-        </div>
-      </div>
-        
-        <ContactUs> </ContactUs>
+      <Routes>
+        <Route path="/" element={<AllCourseDetails showCourseDetails={showCourseDetails} ></AllCourseDetails>} />
+        <Route path="/course-details" element={<CourseDetails course={selectedCourse} />} />
+      </Routes>
     </Content>
     <Footer>
       <div className='footer-container'>
-        <span>For more details contact us: </span><span>Mobile - 8637263314</span> <span>Email - ankit@gmail.com</span>
+        <div>For more details contact us: </div><span>Mobile - {MOBILE_NUMBER}, </span> <span>Email -{EMAIL_ID}</span>
       </div>
     </Footer>
     </>

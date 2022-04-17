@@ -35,6 +35,9 @@ font-size: 30px;
 export const Content = styled.div.attrs(
     {   className:"content"   })`
       margin: 150px 30px 30px 30px
+      // .MuiTypography-root{
+      //   text-align: left;
+      // }
   `
 export const Footer = styled.div.attrs(
     {   className:"footer"   })`
