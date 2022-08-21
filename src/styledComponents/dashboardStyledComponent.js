@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Title = styled.div.attrs(
     {   className:"title"   })`
+    z-index: 2;
     position: fixed;
     top: 0;
     left:0;
@@ -34,10 +35,9 @@ font-size: 30px;
 
 export const Content = styled.div.attrs(
     {   className:"content"   })`
-      margin: 150px 30px 30px 30px
-      // .MuiTypography-root{
-      //   text-align: left;
-      // }
+    overflow: auto;
+    margin: 130px 30px 130px 30px;
+    }
   `
 export const Footer = styled.div.attrs(
     {   className:"footer"   })`

@@ -5,6 +5,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button } from '@mui/material';
+import { AccordionContainer } from '../../styledComponents';
+
 
 
 const styles = {
@@ -17,10 +19,10 @@ const styles = {
   };
 
 const CommonAccordion = ({courseDetails, showCourseView}) => {
-    const {courseName, courseDescription, courseDetailedDescription} = courseDetails;
+    const {courseId, courseName, courseDescription, courseDetailedDescription} = courseDetails;
     
     return (
-        <div>
+        <AccordionContainer>
             <Accordion sx={styles.accordionStyle}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -31,12 +33,13 @@ const CommonAccordion = ({courseDetails, showCourseView}) => {
                    
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography>{courseDescription} <br/>
-                    </Typography>
-                    <Button onClick={()=> showCourseView(courseName)}>Click me!</Button>
+                    {courseDescription}
+                    <div className='button-container' style={{ display:'flex', justifyContent:'flex-end'}}>
+                        <Button variant="text" onClick={()=> showCourseView(courseId)}>View Details</Button>
+                    </div>  
                 </AccordionDetails>
             </Accordion>
-        </div>
+        </AccordionContainer>
     )
 }
 

@@ -12,10 +12,14 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [selectedCourse, setSelectedCourse] = useState({});
 
-  const showCourseDetails = (name) => {
-    setSelectedCourse(COURSE_DETAILS.find(ele => ele.courseName === name));
+  const showCourseDetails = (id) => {
+    setSelectedCourse(COURSE_DETAILS.find(ele => ele.courseId === id));
     navigate('/course-details');
   };
+
+  const navigateHome =() => {
+    navigate('/');
+  }
 
   return (
     <>
@@ -26,7 +30,7 @@ const Dashboard = () => {
     <Content>
       <Routes>
         <Route path="/" element={<AllCourseDetails showCourseDetails={showCourseDetails} ></AllCourseDetails>} />
-        <Route path="/course-details" element={<CourseDetails course={selectedCourse} />} />
+        <Route path="/course-details" element={<CourseDetails course={selectedCourse} navigateHome={navigateHome}/>} />
       </Routes>
     </Content>
     <Footer>
